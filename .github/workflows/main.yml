@@ -17,3 +17,4 @@ jobs:
         ftp-server: 45.41.204.244
         ftp-username: root
         ftp-password: RagaWeb#2036VPS
+        remote-dir: /home/NextJS/
