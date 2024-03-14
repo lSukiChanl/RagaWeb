@@ -1,20 +1,25 @@
-name: Publish Website to HestiaCP
+name: Build and Deploy Docker Container
+
 on:
   push:
     branches:
       - main
+
 jobs:
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 2
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@3.1.1
-      with:
-        ftp-server: 45.41.204.244
-        ftp-username: root
-        ftp-password: RagaWeb#2036VPS
-        remote-dir: /home/NextJS/
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install SSH client and dependencies
+      run: sudo apt-get update && sudo apt-get install -y openssh-client sshpass
+
+    - name: Transfer files to VPS
+      run: |
+        sshpass -p 'RagaWeb#2036VPS' scp -o StrictHostKeyChecking=no -r . root@45.41.204.244:/home/NextJS/
+
+    - name: SSH into VPS and deploy Docker container
+      run: |
+        sshpass -p 'RagaWeb#2036VPS' ssh -o StrictHostKeyChecking=no root@45.41.204.244 'cd /home/NextJS/ && docker build -t nombre_de_tu_imagen . && docker run -d -p 3000:3000 nombre_de_tu_imagen'
