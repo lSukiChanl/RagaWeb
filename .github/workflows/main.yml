@@ -1,0 +1,21 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build Docker image
+      run: |
+        docker build -t nombre_de_tu_imagen .
+        docker tag nombre_de_tu_imagen usuario/tu_imagen:latest
+        docker login -u usuario -p contraseña_de_tu_dockerhub
+        docker push usuario/tu_imagen:latest
