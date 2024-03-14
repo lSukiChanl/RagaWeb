@@ -1,21 +1,19 @@
-name: Build Docker Image
-
+name: Publish Website to HestiaCP
 on:
   push:
     branches:
       - main
-
 jobs:
-  build:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Build Docker image
-      run: |
-        docker build -t nombre_de_tu_imagen .
-        docker tag nombre_de_tu_imagen usuario/tu_imagen:latest
-        docker login -u usuario -p contraseña_de_tu_dockerhub
-        docker push usuario/tu_imagen:latest
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 2
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      with:
+        ftp-server: http://45.41.204.244:3000/
+        ftp-username: root
+        ftp-password: RagaWeb#2036VPS
