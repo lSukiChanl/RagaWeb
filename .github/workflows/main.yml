@@ -15,7 +15,7 @@ jobs:
 
     # Ejecuta el comando "ls" para listar el contenido del directorio /Home/NextJS
     - name: List directory contents
-      run: ssh root@45.41.204.244 'ls -l /Home/NextJS'
+      run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'ls -l /Home/NextJS'
 
     - name: Set up SSH keys
       uses: webfactory/ssh-agent@v0.5.3
@@ -23,4 +23,4 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Execute deployment script on VPS
-      run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'bash -s' < /Home/NextJS/RagaWeb.sh
+      run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'bash -s' < RagaWeb.sh
