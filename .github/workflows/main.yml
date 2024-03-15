@@ -11,14 +11,14 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: SSH into server and run Docker Compose
         uses: appleboy/ssh-action@master
         with:
           host: 45.41.204.244
           username: root
-          key: ${{ secrets.KEY }}
+          key: ${{ secrets.KEYSSH }}
           port: 22
           script: |
             cd /home/NextJS/
