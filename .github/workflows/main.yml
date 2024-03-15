@@ -21,4 +21,5 @@ jobs:
     # Ejecuta el script RagaWeb.sh directamente en el servidor VPS
     - name: Execute deployment script on VPS
       #run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'touch prueba'
-      run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'bash -s' < ./RagaWeb.sh
+      # run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'bash -s' < ./RagaWeb.sh
+      #run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 './RagaWeb.sh'
