@@ -1,25 +1,22 @@
-name: Docker Compose Build and Deploy
+name: Deploy to VPS
 
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: SSH into server and run Docker Compose
-        uses: appleboy/ssh-action@master
-        with:
-          host: 45.41.204.244
-          username: root
-          key: ${ secrets.KEYP }
-          port: 22
-          script: |
-            cd /home/NextJS/
-            ./RagaWeb.sh
+    - name: Set up SSH keys
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.KEYP }}
+
+    - name: Execute deployment script on VPS
+      run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'bash -s' < script.sh
