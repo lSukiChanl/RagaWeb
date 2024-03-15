@@ -19,4 +19,4 @@ jobs:
         ssh-private-key: ${{ secrets.KEY_PRIVATE }}
 
     - name: Execute deployment script on VPS
-      run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'bash -s' < script.sh
+      run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'bash -s' < /home/NextJS/RagaWeb.sh
