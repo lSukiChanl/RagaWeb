@@ -18,7 +18,7 @@ jobs:
         with:
           host: 45.41.204.244
           username: root
-          key: ${{ secrets.KEYS }}
+          key: ${ secrets.KEYS }
           port: 22
           script: |
             cd /home/NextJS/
