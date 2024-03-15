@@ -20,4 +20,5 @@ jobs:
 
     # Ejecuta el script RagaWeb.sh directamente en el servidor VPS
     - name: Execute deployment script on VPS
-      run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'bash -s' < (cd ~/home/NextJS/; ./run.sh)
+      run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'touch /ruta/a/tu/directorio/prueba'
+      #run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'bash -s' < ./home/NextJS/RagaWeb.sh
