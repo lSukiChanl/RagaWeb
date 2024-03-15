@@ -1,25 +1,22 @@
-name: Docker Compose Build and Deploy
+#name: Docker Compose Build and Deploy
 
-on:
-  push:
-    branches:
-      - main
+#on:
+  #push:
+   # branches:
+    #  - main
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+#jobs:
+ # deploy:
+  #  runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+   # steps:
+    #- name: Checkout repository
+     # uses: actions/checkout@v2
 
-    - name: Set up SSH keys
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.KEY_PRIVATE }}
+    #- name: Set up SSH keys
+     # uses: webfactory/ssh-agent@v0.5.3
+      #with:
+       # ssh-private-key: ${{ secrets.KEY_PRIVATE }}
 
-    # Ejecuta el script RagaWeb.sh directamente en el servidor VPS
-    - name: Execute deployment script on VPS
-      #run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'touch prueba'
-      # run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'bash -s' < ./RagaWeb.sh
-      run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 './RagaWeb.sh'
+    #- name: Execute deployment script on VPS
+     # run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 './RagaWeb.sh'
