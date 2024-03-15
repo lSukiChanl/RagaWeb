@@ -1,9 +1,9 @@
-name: Deploy to VPS
+name: Docker Compose Build and Deploy
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
     - name: Set up SSH keys
       uses: webfactory/ssh-agent@v0.5.3
       with:
-        ssh-private-key: ${{ secrets.KEYS }}
+        ssh-private-key: ${{ secrets.KEY_PRIVATE }}
 
     - name: Execute deployment script on VPS
       run: ssh -o StrictHostKeyChecking=no root@45.41.204.244 'bash -s' < script.sh
